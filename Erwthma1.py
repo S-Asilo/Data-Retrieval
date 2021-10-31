@@ -64,32 +64,6 @@ for index,text in enumerate(TextList):
                 print("Εμφανίζεται {} Φορές".format(text.count(keyword)).center(50))
                 print("Σε ποσοστό {:.2f}%".format(text.count(keyword) / len(text) * 100).center(50),end=("\n\n") )
                 
-                
-                
-# for index,text in enumerate(TextList):
-#     if text.name in ["Monty Python and the Holy Grail", "Chat Corpus"]:
-#         print("Για το κείμενο: ", text.name)
-#         print("Το", lexical_richness(index+1)*100,"% των λέξεων είναι μοναδικό")
-        
-#         if text.name == "Monty Python and the Holy Grail":
-#             print("Η λέξη LAUNCELOT: ")
-#             print("Εμφανίζεται",text.count("LAUNCELOT"), "Φορές")
-#             print("Σε ποσοστό", text.count("LAUNCELOT") / len(text) * 100, "%" )
-#             print()
-#         else:
-#             print("-------------------------------------------------")
-#             print("Η λέξη omg: ")
-#             print("Εμφανίζεται",text.count("omg"), "Φορές")
-#             print("Σε ποσοστό", text.count("omg") / len(text) * 100, "%" )
-#             print("-------------------------------------------------")
-#             print("Η λέξη OMG: ")
-#             print("Εμφανίζεται",text.count("OMG"), "Φορές")
-#             print("Σε ποσοστό", text.count("OMG") / len(text) * 100, "%" )
-#             print("-------------------------------------------------")
-#             print("Η λέξη lol: ")    
-#             print("Εμφανίζεται",text.count("lol"), "Φορές")
-#             print("Σε ποσοστό", text.count("lol") / len(text) * 100, "%" )
-#             print()
 
             
 # 1,b
