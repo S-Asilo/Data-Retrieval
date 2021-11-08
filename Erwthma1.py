@@ -53,7 +53,7 @@ for index,text in enumerate(TextList):
         print(text.name.center(50),end=("\n\n"))
         print("Το {:.2f}% των λέξεων είναι μοναδικό".format( lexical_richness(index+1)*100).center(50),end=("\n\n"))
         
-        if text.name == "Monty Python and the Holy Grail":
+        if "Monty Python and the Holy Grail" in text.name :
             for keyword in MontyKeywords:
                 print("Η λέξη {}: ".format(keyword).center(50))
                 print("Εμφανίζεται {} Φορές".format(text.count(keyword)).center(50))
