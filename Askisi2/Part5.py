@@ -44,7 +44,7 @@ all_doc_tokens = sum(tokens, [])
 
 
 eng_stopwords = nltk.corpus.stopwords.words('english')
-all_doc_tokens = [x for x in all_doc_tokens if x not in eng_stopwords]
+all_doc_tokens = [x for x in all_doc_tokens if x.lower() not in eng_stopwords]
 all_doc_tokens = [x for x in all_doc_tokens if x not in string.punctuation]
 
 
@@ -68,4 +68,7 @@ for doc in tokens:
     
     doc_vectors.append(vec)
     
-print(cosine_sim(doc_vectors[1], doc_vectors[1]))
+print(cosine_sim(doc_vectors[0], doc_vectors[1]) *100, "%")
+
+# Ο ομοιόττηα των 2 προτασεων ειναι 0. Γεγονός που δεν μας κανει εντυπωση καθως οπως ειδαμε σε προηγουμενο ερωτημα, οι μονες κοινες
+# λεξεις που ειχαν για τις πρωτες 50 λεξεις ηταν stopwords και σημεια στιξης τα οποια αφαιρουμε. 
