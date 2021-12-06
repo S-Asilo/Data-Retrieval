@@ -18,12 +18,12 @@ sentence4 = "It always seems impossible until it's done."
 sentence5 = "Many hands make light work."
 
 
-sentences =[sentence1,sentence2,sentence3,sentence4,sentence5]
-        
+sentences =[sentence2,sentence3,sentence4,sentence5]
+
 corpus = {}
 
 for i, sent in enumerate(sentences):
-    corpus['sent{}'.format(i + 1)] = dict((tok.strip('.'), 1) for tok in sent.split())
+    corpus['sent{}'.format(i + 2)] = dict((tok.strip('.'), 1) for tok in sent.split())
     
 df = pd.DataFrame.from_records(corpus).fillna(0).astype(int)
 
@@ -31,31 +31,31 @@ df = pd.DataFrame.from_records(corpus).fillna(0).astype(int)
 print()
 
 print("Ομοιότητα μεταξύ των προτάσεων 2,3,4 και 5:")
-print( len([(k,v) for (k,v) in (df.sent2 & df.sent4 & df.sent3 & df.sent5).items() if v]))
+print( len([(k,v) for (k,v) in (df.sent2 & df.sent4 & df.sent3 & df.sent5).items() if v]) / len([(k,v) for (k,v) in (df.sent2 & df.sent4 & df.sent3 & df.sent5).items()])*100,"%") 
 
 
 print("Ομοιότητα μεταξύ των προτάσεων 2 και 3:")
-print( len([(k,v) for (k,v) in (df.sent2 & df.sent3).items() if v]))
+print( len([(k,v) for (k,v) in (df.sent2 & df.sent3).items() if v]) / len([(k,v) for (k,v) in (df.sent2 | df.sent3).items() if v])*100,"%")
 
 print("Ομοιότητα μεταξύ των προτάσεων 2 και 4:")
-print( len([(k,v) for (k,v) in (df.sent2 & df.sent4).items() if v]))
+print( len([(k,v) for (k,v) in (df.sent2 & df.sent4).items() if v]) / len([(k,v) for (k,v) in (df.sent2 | df.sent4).items() if v])*100,"%")
 
 print("Ομοιότητα μεταξύ των προτάσεων 2 και 5:")
-print( len([(k,v) for (k,v) in (df.sent2  & df.sent5).items() if v]))
+print( len([(k,v) for (k,v) in (df.sent2 & df.sent5).items() if v]) / len([(k,v) for (k,v) in (df.sent2 | df.sent5).items() if v])*100,"%")
 
 print("Ομοιότητα μεταξύ των προτάσεων 3 και 4:")
-print( len([(k,v) for (k,v) in ( df.sent4 & df.sent3 ).items() if v]))
+print( len([(k,v) for (k,v) in ( df.sent4 & df.sent3 ).items() if v]) / len([(k,v) for (k,v) in ( df.sent4 | df.sent3 ).items() if v])*100,"%")
 
 print("Ομοιότητα μεταξύ των προτάσεων 3 και 5:")
-print( len([(k,v) for (k,v) in ( df.sent3 & df.sent5).items() if v]))
+print( len([(k,v) for (k,v) in ( df.sent3 & df.sent5).items() if v]) / len([(k,v) for (k,v) in ( df.sent3 | df.sent5).items() if v])*100,"%")
 
 print("Ομοιότητα μεταξύ των προτάσεων 4 και 5:")
-print( len([(k,v) for (k,v) in ( df.sent4 & df.sent5).items() if v]))
+print( len([(k,v) for (k,v) in ( df.sent4 & df.sent5).items() if v]) / len([(k,v) for (k,v) in ( df.sent4 | df.sent5).items() if v])*100,"%")
 
 
 
 for i, sent in enumerate(sentences):
-    corpus['sent{}'.format(i + 1)] = dict((tok, 1) for tok in nltk.word_tokenize(sent))
+    corpus['sent{}'.format(i + 2)] = dict((tok, 1) for tok in nltk.word_tokenize(sent))
     
 df = pd.DataFrame.from_records(corpus).fillna(0).astype(int)
 
@@ -63,32 +63,32 @@ df = pd.DataFrame.from_records(corpus).fillna(0).astype(int)
 print()
 
 print("Ομοιότητα μεταξύ των προτάσεων 2,3,4 και 5:")
-print( len([(k,v) for (k,v) in (df.sent2 & df.sent4 & df.sent3 & df.sent5).items() if v]))
+print( len([(k,v) for (k,v) in (df.sent2 & df.sent4 & df.sent3 & df.sent5).items() if v]) / len([(k,v) for (k,v) in (df.sent2 & df.sent4 & df.sent3 & df.sent5).items()]) *100,"%")
 print( [(k,v) for (k,v) in (df.sent2 & df.sent4 & df.sent3 & df.sent5).items() if v])
 
 
 print("Ομοιότητα μεταξύ των προτάσεων 2 και 3:")
-print( len([(k,v) for (k,v) in (df.sent2 & df.sent3).items() if v]))
+print( len([(k,v) for (k,v) in (df.sent2 & df.sent3).items() if v]) / len([(k,v) for (k,v) in (df.sent2 | df.sent3).items() if v]) *100,"%")
 print( [(k,v) for (k,v) in (df.sent2 & df.sent3).items() if v])
 
 print("Ομοιότητα μεταξύ των προτάσεων 2 και 4:")
-print( len([(k,v) for (k,v) in (df.sent2 & df.sent4).items() if v]))
+print( len([(k,v) for (k,v) in (df.sent2 & df.sent4).items() if v]) / len([(k,v) for (k,v) in (df.sent2 | df.sent4).items() if v])*100 ,"%")
 print( [(k,v) for (k,v) in (df.sent2 & df.sent4).items() if v])
 
 print("Ομοιότητα μεταξύ των προτάσεων 2 και 5:")
-print( len([(k,v) for (k,v) in (df.sent2  & df.sent5).items() if v]))
+print( len([(k,v) for (k,v) in (df.sent2 & df.sent5).items() if v]) / len([(k,v) for (k,v) in (df.sent2 | df.sent5).items() if v])*100,"%")
 print( [(k,v) for (k,v) in (df.sent2  & df.sent5).items() if v])
 
 print("Ομοιότητα μεταξύ των προτάσεων 3 και 4:")
-print( len([(k,v) for (k,v) in ( df.sent4 & df.sent3 ).items() if v]))
+print( len([(k,v) for (k,v) in ( df.sent4 & df.sent3 ).items() if v]) / len([(k,v) for (k,v) in ( df.sent4 | df.sent3 ).items() if v])*100,"%")
 print( [(k,v) for (k,v) in ( df.sent4 & df.sent3 ).items() if v])
 
 print("Ομοιότητα μεταξύ των προτάσεων 3 και 5:")
-print( len([(k,v) for (k,v) in ( df.sent3 & df.sent5).items() if v]))
+print( len([(k,v) for (k,v) in ( df.sent3 & df.sent5).items() if v]) / len([(k,v) for (k,v) in ( df.sent3 | df.sent5).items() if v])*100,"%")
 print( [(k,v) for (k,v) in ( df.sent3 & df.sent5).items() if v])
 
 print("Ομοιότητα μεταξύ των προτάσεων 4 και 5:")
-print( len([(k,v) for (k,v) in ( df.sent4 & df.sent5).items() if v]))
+print( len([(k,v) for (k,v) in ( df.sent4 & df.sent5).items() if v]) / len([(k,v) for (k,v) in ( df.sent4 | df.sent5).items() if v])*100,"%")
 print( [(k,v) for (k,v) in ( df.sent4 & df.sent5).items() if v])
 
 
