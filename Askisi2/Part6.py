@@ -19,7 +19,7 @@ def cosine_sim(vec1, vec2):
     dot_prod = 0
     
     for i, v in enumerate(vec1):
-        dot_prod += v *vec2[i]
+        dot_prod += v* vec2[i]
         
     mag_1 = math.sqrt(sum([x**2 for x in vec1]))
     mag_2 = math.sqrt(sum([x**2 for x in vec2]))
@@ -28,23 +28,13 @@ def cosine_sim(vec1, vec2):
     return dot_prod / (mag_1 * mag_2)
 
 
-tokens = [sent4, sent7]
-
-# document_vector = []
-# doc_length = len(tokens)
-
-# eng_stopwords = nltk.corpus.stopwords.words('english')
-# tokens = [x for x in tokens if x not in eng_stopwords]
-# bag_of_words = Counter(tokens)
-
-# for key, value in bag_of_words.most_common():   
-#     document_vector.append(value / doc_length)
+tokens = [text4[:], text7[:]]
     
 all_doc_tokens = sum(tokens, [])
 
 
 eng_stopwords = nltk.corpus.stopwords.words('english')
-all_doc_tokens = [x for x in all_doc_tokens if x not in eng_stopwords]
+all_doc_tokens = [x for x in all_doc_tokens if x.lower() not in eng_stopwords]
 all_doc_tokens = [x for x in all_doc_tokens if x not in string.punctuation]
 
 
@@ -54,6 +44,8 @@ lexicon = sorted(set(all_doc_tokens))
 from collections import OrderedDict
 
 zero_vector = OrderedDict((token, 0) for token in lexicon)
+# print(len(zero_vector))
+
 
 import copy
 
@@ -68,4 +60,4 @@ for doc in tokens:
     
     doc_vectors.append(vec)
     
-print(cosine_sim(doc_vectors[1], doc_vectors[1]))
+print(cosine_sim(doc_vectors[0], doc_vectors[1]))

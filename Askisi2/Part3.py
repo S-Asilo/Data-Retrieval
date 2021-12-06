@@ -106,7 +106,7 @@ df = pd.DataFrame.from_records(corpus).fillna(0).astype(int)
 print()
 
 print("Ομοιότητα μεταξύ των text4 και text7:")
-print( len([(k,v) for (k,v) in (df.text1 & df.text2).items() if v]))
+print( len([(k,v) for (k,v) in (df.text1 & df.text2).items() if v]) / len([(k,v) for (k,v) in (df.text1 | df.text2).items() if v])*100,"%")
 print( [(k,v) for (k,v) in (df.text1 & df.text2).items() if v])
 
 
