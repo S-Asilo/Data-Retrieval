@@ -12,6 +12,7 @@ from collections import Counter
 import math
 import string
 import copy
+from nltk.tokenize import TreebankWordTokenizer
 from collections import OrderedDict
 
 
@@ -65,5 +66,36 @@ for doc in docs:
     
     document_tfidf_vectors.append(vec)    
     
+print("Η ομοιότητα των πρώτων προτάσεων για τα κείμενα 4 και 7 είναι:")    
 print(cosine_sim(document_tfidf_vectors[0], document_tfidf_vectors[1]) *100, "%")
+
+# Σε σχέση με το προηγούμενο ερώτημα, μπορούμε να δουμε ότι το ποσοστό ομοιότητα είναι το ίδιο. Άρα αυτή η μέθοδος δεν μας
+# προσφέρει κάτι καινούριο από αυτή τη πλευρά. Το πλεονέκτημα που μας παρέχει είναι η δυνατότητα της αναζήτησης. Να βρούμε 
+# δηλαδή ποια από τις 2 αυτες προτασεις είναι πιο σχετική συγκριτικά με ένα query
+
+tokenizer = TreebankWordTokenizer()
+
+query1 = "Which document talks about the senate ?"
+query2 = "Who is in the House of Representatives ?"
+query3 = "board of directors"
+query4 = "Pierre Vinken"
+
+
+query1_vec = copy.copy(zero_vector)
+
+tokens = tokenizer.tokenize(query1.lower())
+token_counts = Counter(tokens)
+
+for key, value in token_counts.items():    
+    docs_containing_key = 0    
+    for _doc in docs:
+        if key in _doc:
+            docs_containing_key += 1
+            
+    if docs_containing_key == 0:
+        continue
+    
+    tf = value /len(tokens)
+    idf = len(docs) / docs_containing_key
+    query1_vec[key]= tf*idf
 
