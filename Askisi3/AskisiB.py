@@ -38,9 +38,12 @@ def levenshtein(s, t):
 correct_words = words.words()
 incorrect_words=['aminal', 'liveli', 'fatnatsic','doog', 'trup']
 
+print("\n Levenshtein Distances \n")
+
+
 for word in incorrect_words:
     temp = [(levenshtein(word, w),w) for w in correct_words if w[0]==word[0]]
-    print(sorted(temp, key = lambda val:val[0])[0][1])
+    print("{} was corrected to {}".format(word, sorted(temp, key = lambda val:val[0])[0][1]))
 
 
 f = open("Dictionaries/Greek_utf8.dic")
@@ -56,13 +59,15 @@ incorrect_gr_words = ["καλιμερα", "καναρήνι", "πουλωβαι�
 
 for word in incorrect_gr_words:
     temp = [(levenshtein(word, w),w) for w in correct_gr_words if w[0]==word[0]]
-    print(sorted(temp, key = lambda val:val[0])[0][1])
+    print("{} was corrected to {}".format(word, sorted(temp, key = lambda val:val[0])[0][1]))
     
 from nltk.metrics.distance import jaccard_distance
 from nltk.util import ngrams
+
+print("\n Jaccard Distances \n")
 
 for word in incorrect_gr_words:
     temp = [(jaccard_distance(set(ngrams(word, 2)),
                               set(ngrams(w, 2))),w)
             for w in correct_gr_words if w[0]==word[0]]
-    print(sorted(temp, key = lambda val:val[0])[0][1])
+    print("{} was corrected to {}".format(word, sorted(temp, key = lambda val:val[0])[0][1]))
