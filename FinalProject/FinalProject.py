@@ -15,7 +15,8 @@ tokenized_query = query.split(" ")
 
 results = bm25.get_top_n(tokenized_query, tok_text, n=3)
 
-
+print()
+print("Searching for",query)
 print()
 print("Results using BM25")
 for i in results:
